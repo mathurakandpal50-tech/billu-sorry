@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Billu ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    color:white;
+    font-family:'DM Sans',sans-serif;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(255,70,150,.28),transparent 30%),
+      radial-gradient(circle at 80% 80%,rgba(120,70,255,.30),transparent 30%),
+      linear-gradient(135deg,#13091f,#250c2c,#10091d);
+}
+
+/* Background */
+.bg{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-2;
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.35;
+    animation:float 9s ease-in-out infinite alternate;
+}
+
+.orb.one{
+    width:260px;
+    height:260px;
+    background:#ff4f9a;
+    top:-80px;
+    left:-70px;
+}
+
+.orb.two{
+    width:300px;
+    height:300px;
+    background:#754cff;
+    right:-100px;
+    bottom:-100px;
+    animation-delay:2s;
+}
+
+@keyframes float{
+    from{transform:translate(0,0) scale(1)}
+    to{transform:translate(40px,-30px) scale(1.15)}
+}
+
+/* Floating hearts */
+.heart{
+    position:fixed;
+    bottom:-30px;
+    opacity:0;
+    pointer-events:none;
+    animation:rise linear forwards;
+    z-index:-1;
+}
+
+@keyframes rise{
+    0%{
+        transform:translateY(0) scale(.6) rotate(0);
+        opacity:0;
+    }
+    15%{opacity:.65}
+    100%{
+        transform:translateY(-110vh) scale(1.3) rotate(30deg);
+        opacity:0;
+    }
+}
+
+/* Top bar */
+.top{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    padding:18px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:20;
+}
+
+.logo{
+    font-weight:700;
+    letter-spacing:.5px;
+    opacity:.9;
+}
+
+.music{
+    width:48px;
+    height:48px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    backdrop-filter:blur(12px);
+}
+
+/* Main */
+.app{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:80px 18px 70px;
+}
+
+.card{
+    width:min(900px,100%);
+    max-height:calc(100vh - 150px);
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.075);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    border-radius:30px;
+    box-shadow:0 25px 80px rgba(0,0,0,.4);
+    position:relative;
+}
+
+/* Slides */
+.slides{
+    position:relative;
+    min-height:540px;
+}
+
+.slide{
+    display:none;
+    min-height:540px;
+    padding:55px;
+    animation:slideIn .65s ease;
+}
+
+.slide.active{
+    display:flex;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(35px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0) scale(1);
+    }
+}
+
+/* Typography */
+.kicker{
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:12px;
+    opacity:.65;
+    margin-bottom:15px;
+}
+
+h1,h2{
+    font-family:'Playfair Display',serif;
+}
+
+h1{
+    font-size:clamp(42px,7vw,76px);
+    line-height:1.02;
+}
+
+h2{
+    font-size:clamp(30px,5vw,48px);
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:17px;
+    line-height:1.8;
+    color:rgba(255,255,255,.84);
+}
+
+.highlight{
+    color:#ffb5d7;
+}
+
+.center{
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    flex-direction:column;
+}
+
+/* Opening */
+.opening{
+    gap:20px;
+}
+
+.small{
+    max-width:620px;
+}
+
+.openBtn{
+    border:0;
+    padding:15px 26px;
+    border-radius:999px;
+    color:#351026;
+    background:white;
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(255,255,255,.15);
+    transition:.25s;
+}
+
+.openBtn:hover{
+    transform:translateY(-3px);
+}
+
+/* Photo */
+.photoWrap{
+    width:min(280px,75vw);
+    margin:0 auto 28px;
+    padding:10px;
+    background:rgba(255,255,255,.92);
+    transform:rotate(-2deg);
+    box-shadow:0 18px 45px rgba(0,0,0,.3);
+}
+
+.photoWrap img{
+    width:100%;
+    display:block;
+    aspect-ratio:4/5;
+    object-fit:cover;
+}
+
+.photoCaption{
+    color:#29202a;
+    font-family:'Playfair Display',serif;
+    padding:9px 5px 3px;
+}
+
+/* Memory layout */
+.memory{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+    align-items:center;
+}
+
+.memory .photoWrap{
+    margin:0;
+}
+
+.text{
+    padding:10px;
+}
+
+/* Timeline */
+.timeline{
+    width:100%;
+    max-width:680px;
+    margin:10px auto 0;
+}
+
+.event{
+    display:flex;
+    gap:18px;
+    margin:18px 0;
+    text-align:left;
+}
+
+.dot{
+    min-width:12px;
+    width:12px;
+    height:12px;
+    margin-top:8px;
+    border-radius:50%;
+    background:#ff9bc8;
+    box-shadow:0 0 18px #ff70ae;
+}
+
+/* Love section */
+.love{
+    font-size:clamp(55px,10vw,110px);
+    font-family:'Playfair Display',serif;
+    animation:pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+}
+
+/* Quote */
+.quote{
+    border-left:3px solid #ff8fbd;
+    padding-left:22px;
+    max-width:680px;
+    margin:auto;
+    text-align:left;
+    font-family:'Playfair Display',serif;
+    font-size:24px;
+    line-height:1.6;
+}
+
+/* Ending */
+.typewriter{
+    min-height:115px;
+    max-width:680px;
+    font-size:19px;
+    line-height:1.9;
+}
+
+/* Navigation */
+.controls{
+    position:absolute;
+    bottom:20px;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    z-index:10;
+}
+
+.nav{
+    width:45px;
+    height:45px;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.08);
+    color:white;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.nav:disabled{
+    opacity:.3;
+}
+
+/* Bottom progress */
+.bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:12px 20px;
+    z-index:20;
+}
+
+.progress{
+    height:3px;
+    width:100%;
+    background:rgba(255,255,255,.15);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progressBar{
+    height:100%;
+    width:0%;
+    background:white;
+    transition:.5s;
+}
+
+.counter{
+    text-align:center;
+    font-size:11px;
+    opacity:.55;
+    margin-top:6px;
+}
+
+/* Confetti */
+.confetti{
+    position:fixed;
+    top:-20px;
+    font-size:20px;
+    animation:confetti 3s linear forwards;
+    z-index:100;
+}
+
+@keyframes confetti{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* Mobile */
+@media(max-width:700px){
+
+    .card{
+        border-radius:24px;
+    }
+
+    .slides,
+    .slide{
+        min-height:520px;
+    }
+
+    .slide{
+        padding:38px 25px 75px;
+    }
+
+    .memory{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .memory .photoWrap{
+        width:190px;
+    }
+
+    p{
+        font-size:15px;
+        line-height:1.65;
+    }
+
+    .quote{
+        font-size:19px;
+    }
+
+    .photoWrap{
+        width:210px;
+    }
+
+    .logo{
+        font-size:13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+</div>
+
+<div class="top">
+    <div class="logo">For My Billu ❤️</div>
+    <button class="music" id="musicBtn">🎵</button>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<main class="app">
+<div class="card">
+
+<div class="slides">
+
+<!-- 1 -->
+<section class="slide active center opening">
+    <div class="kicker">A little something from me</div>
+    <h1>Meri Billu…<br><span class="highlight">maan jao na.</span></h1>
+    <p class="small">
+        Arre meri Billu bbu… sorry na. ❤️<br>
+        Galti ho gayi mere se. Is baar sirf sorry bolne nahi,
+        thoda sa effort dikhane aaya hoon.
+    </p>
+    <button class="openBtn" onclick="startLetter()">Open My Letter ❤️</button>
+</section>
+
+<!-- 2 -->
+<section class="slide center">
+    <div class="kicker">Before anything else</div>
+    <h2>Aap mere liye important ho.</h2>
+    <p class="small">
+        Shayad main har baar sahi words mein nahi bata pata,
+        lekin aap meri life ka woh part ho jisko main
+        easily lose nahi karna chahta.
+    </p>
+</section>
+
+<!-- 3 -->
+<section class="slide memory">
+    <div class="photoWrap">
+        <img src="photos/1.jpg" alt="Memory">
+        <div class="photoCaption">One of my favourite memories ❤️</div>
+    </div>
+    <div class="text">
+        <div class="kicker">That time</div>
+        <h2>Yaad hai?</h2>
+        <p>
+            Pichle saal half-yearly papers ke time hum raat-rraat
+            bhar baatein karte the. Dheere-dheere pata hi nahi chala
+            kab hum itne close aur comfortable ho gaye.
+        </p>
+    </div>
+</section>
+
+<!-- 4 -->
+<section class="slide center">
+    <div class="kicker">Something only we did</div>
+    <h2>Phones the… phir bhi notebooks. 😂</h2>
+    <p class="small">
+        Phone se message karna easy tha, lekin hum notebook mein
+        likhkar uski photo kheench ke ek dusre ko bhejte the.
+        Thoda ajeeb tha… par apna tha.
+    </p>
+</section>
+
+<!-- 5 -->
+<section class="slide memory">
+    <div class="text">
+        <div class="kicker">Our nok-jhok</div>
+        <h2>Thodi jealousy, thoda drama.</h2>
+        <p>
+            Kabhi aap school mein kisi aur se baat karti thi toh
+            mujhe irritation ho jaati thi. 😂 Aur aapko toh
+            mujhe chidhane mein alag hi maza aata tha.
+        </p>
+    </div>
+    <div class="photoWrap">
+        <img src="photos/2.jpg" alt="Memory">
+        <div class="photoCaption">Our stupid little moments</div>
+    </div>
+</section>
+
+<!-- 6 -->
+<section class="slide center">
+    <div class="kicker">And then…</div>
+    <h2>Aapka cute sa drama.</h2>
+    <p class="small">
+        Jab main gussa hota tha, aap apne tareeke se mana leti thi.
+        Kabhi drama, kabhi hasi-mazaak… aur pata nahi kaise
+        mera gussa khatam ho jaata tha.
+    </p>
+</section>
+
+<!-- 7 -->
+<section class="slide center">
+    <div class="kicker">I still remember</div>
+    <h2>School se ghar aate hi stories.</h2>
+    <p class="small">
+        Aapko jo bhi problem hoti thi, jo bhi hua hota tha,
+        aap ghar pahunchte hi bata deti thi.
+        Woh trust mere liye genuinely bahut special tha.
+    </p>
+</section>
+
+<!-- 8 -->
+<section class="slide memory">
+    <div class="photoWrap">
+        <img src="photos/3.jpg" alt="Billu">
+        <div class="photoCaption">My favourite troublemaker 😭❤️</div>
+    </div>
+    <div class="text">
+        <div class="kicker">You are you</div>
+        <h2>Gussa bhi… drama bhi…</h2>
+        <p>
+            Thodi si nasamaj, thodi dramatic, bahut zyada chidhane wali…
+            lekin dil ki saaf. 😂
+            Shayad isi combination ki aadat pad gayi hai mujhe.
+        </p>
+    </div>
+</section>
+
+<!-- 9 -->
+<section class="slide center">
+    <div class="kicker">No excuses</div>
+    <h2>Sorry, Billu.</h2>
+    <p class="small">
+        Jo galti hui, woh galti thi. Main usko justify nahi karunga.
+        Bas itna keh sakta hoon ki mujhe genuinely bura laga
+        ki meri wajah se aap hurt hui.
+    </p>
+</section>
+
+<!-- 10 -->
+<section class="slide center">
+    <div class="kicker">Back then</div>
+    <h2>1000 baar sorry…</h2>
+    <p class="small">
+        Aap yaad karo, jab aap gussa hoti thi toh main
+        1000 baar sorry likhne lagta tha aur kabhi gaane
+        gaa ke manaane ki koshish karta tha. 😂
+    </p>
+</section>
+
+<!-- 11 -->
+<section class="slide center">
+    <div class="kicker">This time</div>
+    <h2>Sirf “sorry” nahi.</h2>
+    <p class="small">
+        Main chahta hoon ki is baar meri baat se zyada
+        mere actions aapko dikhayein ki main genuinely
+        things better karna chahta hoon.
+    </p>
+</section>
+
+<!-- 12 -->
+<section class="slide center">
+    <div class="kicker">Three little words</div>
+    <div class="love">I LOVE YOU</div>
+    <p>Billu ❤️</p>
+</section>
+
+<!-- 13 -->
+<section class="slide center">
+    <div class="kicker">One promise</div>
+    <h2>Aapki aankhon mein aansu nahi.</h2>
+    <p class="small">
+        Main perfect hone ka promise nahi kar raha.
+        Bas itna chahta hoon ki jab aapke paas koi problem ho,
+        toh aapko lage ki ek insaan hai jo bina judge kiye
+        aapki baat sunega.
+    </p>
+</section>
+
+<!-- 14 -->
+<section class="slide center">
+    <div class="kicker">Your dreams</div>
+    <h2>Aapke dreams important hain.</h2>
+    <p class="small">
+        Aap jo bhi achieve karna chahti ho,
+        main chahta hoon ki aapko apne goals ke liye
+        support aur encouragement mile.
+    </p>
+</section>
+
+<!-- 15 -->
+<section class="slide center">
+    <div class="kicker">When life gets heavy</div>
+    <div class="quote">
+        “Jab kabhi aapko lage ki sab kuch akela handle karna hai,
+        bas ek baar yaad kar lena — baat karne ke liye main hoon.”
+    </div>
+</section>
+
+<!-- 16 -->
+<section class="slide memory">
+    <div class="text">
+        <div class="kicker">One day</div>
+        <h2>Ek long bike ride.</h2>
+        <p>
+            Kisi din bas bike uthayenge, mountains ki taraf niklenge,
+            raste mein beautiful views dekhenge, Maggie khayenge,
+            random baatein karenge aur bina kisi hurry ke
+            woh poora din enjoy karenge.
+        </p>
+    </div>
+    <div class="photoWrap">
+        <img src="photos/4.jpg" alt="Memory">
+        <div class="photoCaption">Someday 🌄</div>
+    </div>
+</section>
+
+<!-- 17 -->
+<section class="slide center">
+    <div class="kicker">More memories</div>
+    <h2>Random reels. Random photos.</h2>
+    <p class="small">
+        Saath mein stupid reels banana,
+        random photos click karna,
+        ek dusre ko chidhana…
+        mujhe woh normal si cheezein bhi yaad aati hain.
+    </p>
+</section>
+
+<!-- 18 -->
+<section class="slide center">
+    <div class="kicker">No pressure</div>
+    <h2>Sab kuch ek din mein fix nahi karna.</h2>
+    <p class="small">
+        Main aapse ye expect nahi karta ki ek message ke baad
+        sab pehle jaisa ho jaaye.
+        Bas dheere-dheere comfort wapas banana chahta hoon.
+    </p>
+</section>
+
+<!-- 19 -->
+<section class="slide center">
+    <div class="kicker">One chance</div>
+    <h2>Ek mauka de do.</h2>
+    <p class="small">
+        Mujhe sirf ek chance chahiye ki main baaton se nahi,
+        apne efforts se dikha sakun ki aap mere liye
+        kitni important ho.
+    </p>
+</section>
+
+<!-- 20 -->
+<section class="slide center">
+    <div class="kicker">Finally</div>
+    <h2>Meri Billu… please maan jao. ❤️</h2>
+
+    <p id="finalText" class="typewriter"></p>
+
+    <div style="margin-top:22px;font-size:28px;">
+        ❤️ 🫶 ❤️
+    </div>
+</section>
+
+</div>
+
+<div class="controls">
+    <button class="nav" id="prev" onclick="changeSlide(-1)">‹</button>
+    <button class="nav" id="next" onclick="changeSlide(1)">›</button>
+</div>
+
+</div>
+</main>
+
+<div class="bottom">
+    <div class="progress">
+        <div class="progressBar" id="progressBar"></div>
+    </div>
+    <div class="counter" id="counter">1 / 20</div>
+</div>
+
+<script>
+
+const slides = document.querySelectorAll(".slide");
+const nextBtn = document.getElementById("next");
+const prevBtn = document.getElementById("prev");
+const progressBar = document.getElementById("progressBar");
+const counter = document.getElementById("counter");
+
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let current = 0;
+let musicStarted = false;
+
+/* Music */
+function startLetter(){
+    music.volume = 0.35;
+
+    music.play().then(()=>{
+        musicStarted = true;
+        musicBtn.textContent = "🔊";
+    }).catch(()=>{
+        musicBtn.textContent = "🎵";
+    });
+
+    changeSlide(1);
+}
+
+musicBtn.addEventListener("click",()=>{
+    if(music.paused){
+        music.volume = 0.35;
+        music.play();
+        musicBtn.textContent = "🔊";
+    }else{
+        music.pause();
+        musicBtn.textContent = "🎵";
+    }
+});
+
+/* Slides */
+function showSlide(index){
+
+    if(index < 0) index = 0;
+    if(index >= slides.length) index = slides.length - 1;
+
+    slides[current].classList.remove("active");
+
+    current = index;
+
+    slides[current].classList.add("active");
+
+    counter.textContent = `${current + 1} / ${slides.length}`;
+
+    const percent = ((current + 1) / slides.length) * 100;
+    progressBar.style.width = percent + "%";
+
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+
+    if(current === slides.length - 1){
+        typeFinal();
+        heartExplosion();
+    }
+}
+
+function changeSlide(direction){
+    showSlide(current + direction);
+}
+
+/* Keyboard */
+document.addEventListener("keydown",(e)=>{
+    if(e.key === "ArrowRight") changeSlide(1);
+    if(e.key === "ArrowLeft") changeSlide(-1);
+});
+
+/* Swipe */
+let touchStartX = 0;
+
+document.addEventListener("touchstart",(e)=>{
+    touchStartX = e.changedTouches[0].screenX;
+},{passive:true});
+
+document.addEventListener("touchend",(e)=>{
+    const touchEndX = e.changedTouches[0].screenX;
+    const distance = touchEndX - touchStartX;
+
+    if(Math.abs(distance) > 50){
+        if(distance < 0) changeSlide(1);
+        else changeSlide(-1);
+    }
+},{passive:true});
+
+/* Floating hearts */
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const symbols = ["❤️","💗","💕","♡","♥"];
+
+    heart.textContent =
+        symbols[Math.floor(Math.random()*symbols.length)];
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (12 + Math.random()*20) + "px";
+    heart.style.animationDuration = (6 + Math.random()*7) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },14000);
+}
+
+setInterval(createHeart,650);
+
+/* Final typewriter */
+let typed = false;
+
+function typeFinal(){
+
+    if(typed) return;
+
+    typed = true;
+
+    const text =
+    "Billu maaf kar do na… galti ho gayi mere se. " +
+    "Main bas itna chahta hoon ki hum phir se wohi hasi-mazaak, " +
+    "woh late-night baatein aur woh comfort dheere-dheere wapas laa sakein. " +
+    "Aap mere liye genuinely bahut special ho. " +
+    "I am sorry. I love you. ❤️";
+
+    const element = document.getElementById("finalText");
+
+    let i = 0;
+
+    const timer = setInterval(()=>{
+        element.textContent += text.charAt(i);
+        i++;
+
+        if(i >= text.length){
+            clearInterval(timer);
+        }
+    },28);
+}
+
+/* Final hearts */
+function heartExplosion(){
+
+    for(let i=0;i<35;i++){
+
+        setTimeout(()=>{
+
+            const heart = document.createElement("div");
+
+            heart.className = "confetti";
+
+            heart.textContent =
+                ["❤️","💗","💕","✨"][Math.floor(Math.random()*4)];
+
+            heart.style.left = Math.random()*100 + "vw";
+            heart.style.animationDuration =
+                (2 + Math.random()*2) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(()=>{
+                heart.remove();
+            },4500);
+
+        },i*55);
+    }
+}
+
+/* Initial UI */
+showSlide(0);
+
+</script>
+
+</body>
+  </html>
